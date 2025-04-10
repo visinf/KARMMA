@@ -1,0 +1,302 @@
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+
+.footer .icon-link {
+    font-size: 25px;
+    color: #000;
+}
+
+.link-block a {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+h2.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Space between text and emoji */
+  margin-top: 5px; /* Reduce space above the title */
+  margin-bottom: 5px; /* Reduce space below the title */
+}
+
+/* hr {
+  border: none;
+  border-top: 2px solid black;
+  width: 100%;
+  margin: 0px; 
+} */
+
+.tldr-line {
+  border: none;
+  border-top: 2px solid black; /* Ensure the color is black */
+  width: 100%;
+  margin-top: -18px;  /* Reduce space between the text and line */
+  margin-bottom: 10px;  /* Remove extra space below the line */
+}
+
+.equal-contribution {
+  font-size: 0.9em; /* Slightly smaller font */
+  font-style: italic; /* Make it italic */
+  color: #333;
+  margin-top: 10px;
+}
+
+.image-container {
+  display: flex; /* Arrange images in a row */
+  justify-content: center; /* Center them */
+  align-items: center; /* Align them properly */
+  gap: 20px; /* Space between images */
+  flex-direction: row;
+}
+
+.image-item {
+  text-align: center; /* Center caption below the image */
+}
+
+.image-container img {
+  height: 190px; /* Set the height to be the same */
+  width: auto; /* Maintain aspect ratio, width adjusts accordingly */
+  object-fit: contain; /* Ensures the full image is visible */
+}
+
+@media(max-width: 768px) { 
+    .image-container {
+      flex-direction: column; 
+    }
+    
+    .image-container img {
+      width: 95%; 
+      height: auto;
+    }
+}
+
+.image-container-large {
+    display: flex; /* Arrange images in a row */
+    justify-content: center; /* Center them */
+    align-items: center; /* Align them properly */
+    gap: 20px; /* Space between images */
+    flex-direction: row;
+    margin-top: -5px;  
+    margin-bottom: 35px; 
+}
+
+.image-container-large img {
+    height: 220px; /* Set the height to be the same */
+    width: auto; /* Maintain aspect ratio, width adjusts accordingly */
+    object-fit: contain; /* Ensures the full image is visible */
+}
+
+@media(max-width: 768px) { 
+    .image-container-large {
+        flex-direction: column; 
+    }
+    
+    .image-container-large img {
+        width: 95%; 
+        height: auto;
+    }
+}
+
+.caption {
+  margin-top: 5px; /* Space between the image and the caption */
+  font-size: 14px; /* Adjust font size as needed */
+  text-align: center; /* Center the caption */
+}
+
+.caption-small-space {
+    margin-top: -2px; /* Space between the image and the caption */
+    font-size: 14px; /* Adjust font size as needed */
+    text-align: center; /* Center the caption */
+  }
+
+.publication-banner {
+  max-height: parent;
+
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+    font-family: 'Google Sans', sans-serif;
+    background-image: linear-gradient(45deg, #9eab74, #636950); /* Your gradient colors */
+    -webkit-background-clip: text; /* For Chrome/Safari */
+    background-clip: text; /* For other browsers */
+    color: transparent; /* Make the text itself transparent */
+}
+
+.publication-authors {
+    font-family: 'Google Sans', sans-serif;
+}
+
+.publication-venue {
+    color: #555;
+    width: fit-content;
+    font-weight: bold;
+}
+
+.publication-awards {
+    color: #ff3860;
+    width: fit-content;
+    font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+   color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+    text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+
+    overflow: hidden;
+    border-radius: 10px !important;
+}
+
+.publication-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.results-carousel video {
+  margin: 0;
+}
+
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.bottom-space-big {
+    padding-bottom: 35px;  
+}
+
+.bottom-space-small {
+    padding-bottom: 10px;  
+}
+
+.responsive-img {
+    width: 100%;
+    --c-width: 100%;
+}
+  
+@media (min-width: 768px) { 
+    .responsive-img {
+      width: var(--c-width);
+    }
+}
+
+.img-85 {
+    --c-width: 85%;
+}
+  
+.img-65 {
+    --c-width: 65%;
+}
+
+.img-inline {
+    margin-top: -20px;  
+    margin-bottom: 15px;  
+}
+
+.variable-label::before {
+    content: attr(text-large);
+  }
+  
+@media (max-width: 768px) {
+    .variable-label::before {
+        content: attr(text-small);
+    }
+}
+
+.left {
+    text-align: left;
+}
