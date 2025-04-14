@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Knowledge Distillation for Multimodal Egocentric Action Recognition Robust to Missing Modalities.">
+        <meta name="keywords" content="Knowledge distillation, Multimodal learning, Action recognition, Egocentric video, Missing Modalities">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>KARMMA</title>
+
+        <link rel="stylesheet" href="./static/css/bulma.min.css">
+        <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+        <link rel="stylesheet" href="./static/css/index.css">
+        <script defer src="./static/js/fontawesome.all.min.js"></script>
+        <script src="./static/js/index.js"></script>
+
+        <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container is-max-desktop">
+                    <div class="columns is-centered">
+                        <div class="column has-text-centered">
+                            <h1 class="title is-1 publication-title">
+                                Knowledge Distillation for Multimodal Egocentric Action Recognition Robust to Missing Modalities
+                            </h1>
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block"><a href="https://maria-sanvil.github.io/">Maria Santos-Villafranca</a><sup>*1</sup>,</span>
+                                <span class="author-block"><a href="https://DustinCarrion.github.io/">Dustin Carrión-Ojeda</a><sup>*2</sup>,</span>
+                                <span class="author-block"><a href="https://i3a.unizar.es/es/investigadores/alejandro-perez-yus">Alejandro Perez-Yus</a><sup>1</sup>,</span>
+                                <span class="author-block"><a href="https://jesusbermudezcameo.github.io/">Jesus Bermudez-Cameo</a><sup>1</sup>,</span>
+                                <span class="author-block"><a href="https://webdiis.unizar.es/~jguerrer/">Jose J. Guerrero</a><sup>1</sup>,</span>
+                                <span class="author-block"><a href="https://schaubsi.github.io/">Simone Schaub-Meyer</a><sup>2,3</sup></span>
+                            </div>
+
+                            <div class="is-size-5 publication-authors">
+                                <span class="author-block"><sup>1</sup>University of Zaragoza,</span>
+                                <span class="author-block"><sup>2</sup>TU Darmstadt,</span>
+                                <span class="author-block"><sup>3</sup>hessian.AI</span>
+                            </div>
+
+                            <div class="columns is-centered has-text-centered">
+                                <div class="column is-full">
+                                    <p class="equal-contribution">
+                                        *Equal contribution.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="column has-text-centered">
+                                <div class="publication-links">
+                                    <span class="link-block">
+                                        <a href="https://arxiv.org/abs/2504.08578" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="ai ai-arxiv"></i>
+                                            </span>
+                                            <span>arXiv</span>
+                                        </a>
+                                    </span>
+                                    <span class="link-block">
+                                        <a href="https://visinf.github.io/KARMMA" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                            <span>Code (Coming Soon)</span>
+                                        </a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <!-- TL;DR. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">TL;DR 🚀</h2>
+                        <hr class="tldr-line"> <!-- Bottom horizontal line -->
+                        <div class="content has-text-justified">
+                            <p class="bottom-space-big">
+                                We propose KARMMA, a multimodal-to-multimodal knowledge distillation approach for egocentric action recognition that leverages multiple modalities while remaining robust to missing ones. Our method is flexible and well-suited for real-world applications, as it can perform inference with any combination of the trained modalities while requiring low memory usage and computational complexity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/ TL;DR. -->
+
+                <!-- Abstract. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Abstract</h2>
+                        <hr class="tldr-line"> <!-- Bottom horizontal line -->
+                        <div class="image-item">
+                            <img src="./static/images/karmma-overview.jpg" alt="KARMMA overview" class="responsive-img img-85" />
+                            <p class="caption bottom-space-small">
+                                Overview of our proposed multimodal-to-multimodal distillation pipeline (KARMMA) for egocentric action recognition.
+                            </p>
+                        </div>
+                        <div class="content has-text-justified">
+                            <p class="bottom-space-big">
+                                Action recognition is an essential task in egocentric vision due to its wide range of applications across many fields. While deep learning methods have been proposed to address this task, most rely on a single modality, typically video. However, including additional modalities may improve the robustness of the approaches to common issues in egocentric videos, such as blurriness and occlusions. Recent efforts in multimodal egocentric action recognition often assume the availability of all modalities, leading to failures or performance drops when any modality is missing. To address this, we introduce an efficient multimodal <b>k</b>nowledge distillation approach for egocentric <b>a</b>ction <b>r</b>ecognition that is robust to <b>m</b>issing <b>m</b>od<b>a</b>lities (KARMMA) while still benefiting when multiple modalities are available. Our method focuses on resource-efficient development by leveraging pre-trained models as unimodal feature extractors in our teacher model, which distills knowledge into a much smaller and faster student model. Experiments on the Epic-Kitchens and Something-Something datasets demonstrate that our student model effectively handles missing modalities while reducing its accuracy drop in this scenario.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Abstract. -->
+
+                <!-- Method. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Method</h2>
+                        <hr class="tldr-line"> <!-- Bottom horizontal line -->
+                        <div class="column is-full has-text-centered">
+                            <div class="image-container">
+                                <div class="image-item">
+                                    <img src="static/images/teacher-diagram.jpg" alt="Teacher diagram">
+                                </div>
+                                <div class="image-item">
+                                    <img src="static/images/distillation-diagram.jpg" alt="Distillation diagram">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content has-text-justified">
+                            <p>
+                                The <b>KARMMA pipeline</b> consists of two stages. In the first stage <b class="variable-label" text-large="(left)" text-small="(top)"></b>, the teacher processes all modalities using frozen unimodal feature extractors and learns to fuse their features through a combination of cross-entropy and alignment losses. In the second stage <b class="variable-label" text-large="(right)" text-small="(bottom)"></b>, the student learns from the frozen, previously trained teacher via knowledge distillation, incorporating modality dropout and a strategy for handling missing modalities to enhance robustness in incomplete input scenarios.
+                            </p>
+                        </div>
+                        <div class="column is-full has-text-centered">
+                            <img src="./static/images/missing-modality-strategy.jpg" alt="Missing modality strategy" class="responsive-img img-65" />
+                        </div>
+                        <div class="content has-text-justified">
+                            <p class="bottom-space-big">
+                                Our proposed strategy for handling missing modalities introduces two types of learnable tokens into the embedding layer of the student. This layer first projects the tokens from all availalbe feature extractors. Then, it adds the corresponding learned modality token \(\breve{\mathbf{t}}^{m}\) to all projected tokens. Finally, a learned token \(\dot{\mathbf{t}}_{i}^{m}\) is added to each individual token. The key difference between \(\breve{\mathbf{t}}^{m}\) and \(\dot{\mathbf{t}}_{i}^{m}\) is that \(\breve{\mathbf{t}}^{m}\) is learned per modality, whereas \(\dot{\mathbf{t}}_{i}^{m}\) is learned per token.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Method. -->
+
+                <!-- Results. -->
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-four-fifths">
+                        <h2 class="title is-3">Results</h2>
+                        <hr class="tldr-line"> <!-- Bottom horizontal line -->
+                        <div class="content has-text-justified">
+                            <p>
+                                We evaluate our teacher (KARMMA<sub>T</sub>) and student (KARMMA<sub>S</sub>) models on the Epic-Kitchens-100 and Something-Something (V2) datasets. Since using the validation set for both  validation and testing may not reflect the generalization capability of our method, we created a custom split of the Epic-Kitchens training set, named Epic-Kitchens*, allocating 90% for training and 10% for validation, and kept the validation split for testing.
+                            </p>
+                        </div>
+                        <h3 class="title is-4 left">Analysis of KARMMA Enhancements</h3>
+                        <div class="content has-text-justified">
+                            <p>
+                                Our KARMMA<sub>S</sub> incorporates multimodal-to-multimodal knowledge distillation, modality dropout, and our strategy for handling missing modalities, collectively referred to as “KARMMA enhancements.” To analyze the impact of these enhancements, we compare KARMMA<sub>S</sub> to two baselines with the same architecture. The first, Baseline, does not include any KARMMA enhancements. The second, Baseline w/ δ, includes modality dropout and our proposed strategy for handling missing modalities. We denote “V” (video), “F” (optical flow), “A” (audio), and “D” (object detection annotations). “[A/D]” indicates that either audio or object detection is used, depending on the dataset. The reported results represent action accuracy percentages (higher is better). Rows with a gray background indicate our final student while bold and underline values indicate the best and second best results.
+                            </p>
+                        </div>
+                        <div class="column is-full has-text-centered">
+                            <img src="./static/images/karmma-enhancements.png" alt="Table of results" class="responsive-img img-65 img-inline" />
+                        </div>
+                        <h3 class="title is-4 left">Dynamic Missing Modality Patterns</h3>
+                        <div class="content has-text-justified">
+                            <p>
+                                Real-world scenarios often involve dynamic missing modality patterns due to sensor malfunctions. To assess robustness, we evaluate both baselines and our KARMMA<sub>S</sub> under increasing probabilities of missing modalities, ranging from 0% to 90% during inference. The results of Baseline w/ δ demonstrate that incorporating modality dropout and our strategy for handling missing modalities consistently improves accuracy. Likewise, integrating our distillation approach enables KARMMA<sub>S</sub> to consistently outperform both baselines across all scenarios and datasets.
+                            </p>
+                        </div>
+                        <div class="image-container-large">
+                            <div class="image-item">
+                                <img src="static/images/modality-dropout-ek.png" alt="Modality dropout plot">
+                                <p class="caption-small-space"> 
+                                    (a) Epic-Kitchens 
+                                </p>
+                            </div>
+                            <div class="image-item">
+                                <img src="static/images/modality-dropout-ss.png" alt="Modality dropout plot">
+                                <p class="caption-small-space"> 
+                                    (b) Something-Something 
+                                </p>
+                            </div>
+                        </div>
+                        <h3 class="title is-4 left">Resource Efficiency</h3>
+                        <div class="content has-text-justified">
+                            <p>
+                                Our KARMMA student reduces memory consumption by at least 50% compared to the teacher model while significantly lowering GFLOPs, resulting in faster inference times.
+                            </p>
+                        </div>
+                        <div class="image-container-large">
+                            <div class="image-item">
+                                <img src="static/images/memory.png" alt="memory">
+                            </div>
+                            <div class="image-item">
+                                <img src="static/images/gflops.png" alt="gflops">
+                            </div>
+                        </div>
+                        <h3 class="title is-4 left">Qualitative Results</h3>
+                        <div class="publication-video">
+                            <video controls muted playsinline>
+                                <source src="./static/videos/Results_nosound_nologo.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Results. -->
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop content">
+                <h3 class="title is-3 left">BibTeX</h3>
+                <pre><code>
+@article{santoscarrion2025knowledge,
+    author  = {Santos-Villafranca, Maria and Carrión-Ojeda, Dustin and Perez-Yus, Alejandro and Bermudez-Cameo, Jesus and Guerrero, Jose J and Schaub-Meyer, Simone},
+    title   = {Knowledge Distillation for Multimodal Egocentric Action Recognition Robust to Missing Modalities},
+    journal = {arXiv},
+    year    = {2025}
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-8">
+                        <div class="content has-text-centered">
+                            <p>
+                                The website template is borrowed from the awesome <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>
