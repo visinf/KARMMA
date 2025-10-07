@@ -27,22 +27,6 @@ body {
   font-family: 'Google Sans', sans-serif;
 }
 
-h2.title {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px; /* Space between text and emoji */
-  margin-top: 5px; /* Reduce space above the title */
-  margin-bottom: 5px; /* Reduce space below the title */
-}
-
-/* hr {
-  border: none;
-  border-top: 2px solid black;
-  width: 100%;
-  margin: 0px; 
-} */
-
 .tldr-line {
   border: none;
   border-top: 2px solid black; /* Ensure the color is black */
@@ -148,6 +132,7 @@ h2.title {
     -webkit-background-clip: text; /* For Chrome/Safari */
     background-clip: text; /* For other browsers */
     color: transparent; /* Make the text itself transparent */
+    line-height: 1.2;
 }
 
 .publication-authors {
@@ -299,4 +284,15 @@ h2.title {
 
 .left {
     text-align: left;
+}
+
+
+#BibTeX {
+    margin-top: -8em;
+}
+
+@media (max-width: 768px) {
+    #BibTeX {
+        margin-top: -6em;
+    }
 }
