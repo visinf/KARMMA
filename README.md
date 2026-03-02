@@ -20,3 +20,19 @@
 ---
 
 🚧 The code will be released soon. Stay tuned!
+
+
+## 🚀 About
+This repository contains the official implementation of the paper *Multimodal Knowledge Distillation for Egocentric Action Recognition Robust to Missing Modalities*.
+
+
+
+<p align="center">
+  <img src="assets/teaser.svg" alt="Teaser" width="500"/>
+</p>
+
+
+
+
+Existing methods for egocentric action recognition often rely solely on RGB videos, although additional modalities, e.g., audio, can improve accuracy in challenging scenarios. However, most multimodal approaches assume all modalities are available at inference, leading to significant accuracy drops, or even failure, when inputs are missing. To address this, we introduce KARMMA, a multimodal <b>K</b>nowledge distillation framework for egocentric <b>A</b>ction <b>R</b>ecognition robust to <b>M</b>issing <b>M</b>od<b>A</b>lities that requires no modality alignment across all samples during training or inference. KARMMA distills knowledge from a multimodal teacher into a multimodal student that benefits from all available modalities while remaining robust to missing ones, making it suitable for diverse scenarios without retraining. Our student uses approximately 50% fewer computational resources than our teacher, resulting in a lightweight and fast model. Experiments on Epic-Kitchens and Something-Something show that our student achieves competitive accuracy while significantly reducing accuracy drops under missing modality conditions.
+
