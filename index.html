@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
         <link rel="stylesheet" href="./static/css/index.css">
+        <link rel="icon" href="./static/images/favicon/favicon.ico" type="image/x-icon">
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -43,15 +44,15 @@
                             </div>
 
                             <div class="is-size-5 publication-authors">
-                                <span class="author-block"><sup>1</sup>University of Zaragoza,</span>
-                                <span class="author-block"><sup>2</sup>TU Darmstadt,</span>
+                                <span class="author-block"><sup>1</sup>I3A – University of Zaragoza,</span>
+                                <span class="author-block"><sup>2</sup>Technical University of Darmstadt,</span>
                                 <span class="author-block"><sup>3</sup>hessian.AI</span>
                             </div>
 
                             <div class="columns is-centered has-text-centered">
                                 <div class="column is-full">
                                     <p class="equal-contribution">
-                                        *Equal contribution.
+                                        *Equal contribution
                                     </p>
                                 </div>
                             </div>
@@ -74,6 +75,14 @@
                                             <span>Code (Coming Soon)</span>
                                         </a>
                                     </span>
+                                    <span class="link-block">
+                                        <a href="static/videos/KARMMA_video.mp4" class="external-link button is-normal is-rounded is-dark">
+                                            <span class="icon">
+                                                <i class="fas fa-video"></i>
+                                            </span>
+                                            <span>Video</span>
+                                        </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -92,7 +101,7 @@
                     alt="KARMMA motivation"/>
                     <div class="content has-text-justified">
                     <p>
-                        <b>TL;DR 🚀:</b> We propose <b>KARMMA</b>, a multimodal-to-multimodal knowledge distillation framework for egocentric action recognition that <b>does not require modality-aligned data</b>. It can handle <b>any subset of the training modalities at inference without retraining</b>, while remaining <b>fast and resource-efficient</b>.
+                        <b>TL;DR 🚀:</b> <b>KARMMA</b> is a multimodal-to-multimodal distillation framework for egocentric action recognition that <b>does not require modality-aligned data</b> and supports <b>any subset of modalities at inference</b>. It produces a <b>fast and lightweight student</b> that remains robust under missing modalities without retraining.
                     </p>
                     </div>
                 </div>
@@ -111,12 +120,13 @@
                 <h2 class="title is-3 is-size-4-mobile">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Existing methods for egocentric action recognition often rely solely on RGB videos, although additional modalities, <i>e.g.</i>, audio, can improve accuracy in challenging scenarios. 
-                        However, most multimodal approaches assume all modalities are available at inference, leading to significant accuracy drops, or even failure, when inputs are missing. 
-                        To address this, we introduce KARMMA, a multimodal <b>K</b>nowledge distillation approach for egocentric <b>A</b>ction <b>R</b>ecognition robust to <b>M</b>issing <b>M</b>od<b>A</b>lities that requires no modality alignment across all samples during training or inference. 
-                        KARMMA distills knowledge from a multimodal teacher into a multimodal student that benefits from all available modalities while remaining robust to missing ones, making it suitable for diverse scenarios without retraining. 
-                        Our student uses approximately 50% fewer computational resources than our teacher, resulting in a lightweight and fast model. 
-                        Experiments on Epic-Kitchens and Something-Something show that our student achieves competitive accuracy while significantly reducing accuracy drops under missing modality conditions.
+                        Egocentric action recognition enables robots to facilitate human-robot interactions and monitor task progress. 
+                        Existing methods often rely solely on RGB videos, although additional modalities, such as audio, can improve accuracy under challenging conditions. 
+                        However, most multimodal approaches assume that all modalities are available at inference time, leading to significant accuracy drops, or even failure, when inputs are missing. 
+                        To address this limitation, we introduce KARMMA, a multimodal <b>K</b>nowledge distillation framework for egocentric <b>A</b>ction <b>R</b>ecognition robust to <b>M</b>issing <b>M</b>od<b>A</b>lities that does not require modality alignment across all samples during training or inference. 
+                        KARMMA distills knowledge from a multimodal teacher into a multimodal student that leverages all available modalities while remaining robust to missing ones, enabling deployment across diverse sensor configurations without retraining. 
+                        Our student uses approximately 50% fewer computational resources than the teacher, resulting in a lightweight and fast model that is well suited for on-robot deployment. 
+                        Experiments on Epic-Kitchens and Something-Something demonstrate that our student achieves competitive accuracy while significantly reducing performance degradation under missing modality conditions.
                 </div>
                 </div>
             </div>
@@ -133,9 +143,9 @@
                         <div class="content has-text-justified">
                             <p>
                                 The <b>KARMMA training</b> consists of two stages. 
-                                In the first stage <b class="variable-label" text-large="(left)" text-small="(top)"></b>, the <b>teacher</b> processes all available modalities using frozen unimodal feature extractors and learns to fuse their features through a transformer-based fusion block. 
+                                In the first stage <b class="variable-label" text-large="(left)" text-small="(top)"></b>, the <b>teacher</b> processes the available modalities using frozen, pre-trained unimodal feature extractors and learns to fuse their features through a transformer-based fusion block. 
                                 The fused features are then passed to a multi-head MLP and optimized with cross-entropy loss. 
-                                In the second stage <b class="variable-label" text-large="(right)" text-small="(bottom)"></b>, the <b>student</b> learns from the frozen, pre-trained teacher using a combination of cross-entropy and knowledge distillation.
+                                In the second stage <b class="variable-label" text-large="(right)" text-small="(bottom)"></b>, the <b>student</b>, built with smaller feature extractors and a compact fusion block, learns from the frozen teacher using a combination of cross-entropy and knowledge distillation.
                             </p>
                         </div>
                         <div class="image-container-large">
@@ -151,11 +161,10 @@
                                 Our proposed KARMMA framework incorporates three main enhancements:
                             </p>
                             <ol>
-                                <li><b>Modality Dropout:</b> Entire modalities are randomly dropped with probability <i>p</i> while ensuring at least one modality remains active. 
-                                    We apply modality dropout to both the teacher and the student so neither network relies on having the full modality set during training.</li> 
-                                <li><b>Missing Modality Strategy:</b> To improve the student's robustness to missing inputs, we use two types of learnable tokens, <i>modality-specific</i> and <i>token-specific</i>. 
-                                    The former differentiates modalities and acts similarly to positional encodings, while the latter helps the model adapt when a modality is absent.</li> 
-                                <li><b>Knowledge Distillation:</b> The frozen teacher transfers its knowledge to the lightweight student by aligning their class probability distributions using Kullback-Leibler (KL) divergence.</li> 
+                                <li><b>Modality Dropout:</b> Entire modalities are randomly dropped with probability <i>p</i>, while ensuring that at least one modality remains active. 
+                                    We apply modality dropout to both the teacher and the student, enabling training without requiring modality-aligned samples.</li> 
+                                <li><b>Missing Modality Strategy:</b> To enhance the student's robustness to missing modalities, we introduce two types of learnable tokens: <i>modality-specific tokens</i>, which differentiate modalities and act similarly to positional encodings, and <i>token-specific tokens</i>, which compensate when a modality is absent. 
+                                <li><b>Knowledge Distillation:</b> The frozen teacher transfers its knowledge to the lightweight student by aligning their class probability distributions via Kullback-Leibler (KL) divergence, improving accuracy and robustness to missing modalities.</li> 
                             </ol>
                         </div>
                     </div>
@@ -165,18 +174,18 @@
                 <!-- Impact Missing Modalities. -->
                 <div class="columns is-centered has-text-centered">
                     <div class="column is-full-width">
-                        <h2 class="title is-3 is-size-4-mobile">Impact of Missing Modalities at Inference</h2>
+                        <h2 class="title is-3 is-size-4-mobile">Inference Robustness to Missing Modalities</h2>
                         <div class="content has-text-justified">
                             <p> 
-                                Real-world scenarios often involve <b>dynamically missing modalities</b> due to sensor malfunctions. 
-                                To simulate this, we gradually increase the probability of dropping each modality from 0% to 90% during inference. 
+                                In real-world robotic deployments, sensors may fail at run time (e.g., occluded cameras or muted microphones), leading to <b>dynamically missing modalities</b>. 
+                                To emulate such conditions, we gradually increase the probability of dropping each modality from 0% to 90% during inference. 
                                 We evaluate: 
-                                <ul> 
-                                    <li><b>Baseline:</b> same architecture as KARMMA<sub>S</sub> but trained end-to-end with cross-entropy loss, without KARMMA enhancements.</li> 
-                                    <li><b>Baseline w/ δ:</b> adds modality dropout and our missing-modality strategy.</li> 
-                                    <li><b>KARMMA<sub>S</sub>:</b> our proposed student with all enhancements.</li> 
-                                </ul> 
                             </p> 
+                            <ul> 
+                                <li><b>Baseline:</b> same architecture as KARMMA<sub>S</sub> but trained end-to-end with cross-entropy loss, without KARMMA enhancements.</li> 
+                                <li><b>Baseline w/ δ:</b> adds modality dropout and our missing-modality strategy.</li> 
+                                <li><b>KARMMA<sub>S</sub>:</b> our proposed student with all enhancements.</li> 
+                            </ul> 
                         </div>
                         <div class="image-container-large">
                             <div class="image-item">
@@ -194,8 +203,8 @@
                         </div>
                         <div class="content has-text-justified">
                             <p> 
-                                Results show that the <b>Baseline</b> is highly sensitive to missing modalities. 
-                                Adding modality dropout and our missing-modality strategy significantly improves robustness, as <b>Baseline w/ δ</b> exhibits a much smaller accuracy drop. 
+                                Results show that the <b>Baseline</b> is highly sensitive to missing modalities, suffering large accuracy degradation even at low dropout rates. 
+                                Incorporating modality dropout and our missing-modality strategy significantly improves robustness, as <b>Baseline w/ δ</b> exhibits a much smaller accuracy drop. 
                                 Furthermore, our distillation pipeline enables <b>KARMMA<sub>S</sub></b> to consistently outperform both baselines across all scenarios and datasets.
                             </p> 
                         </div>
@@ -209,8 +218,8 @@
                         <h2 class="title is-3 is-size-4-mobile">Resource Efficiency</h2>
                         <div class="content has-text-justified">
                             <p> 
-                                Our <b>KARMMA student</b> reduces memory usage by at least <b>50%</b> compared to the teacher while significantly lowering GFLOPs, resulting in a lightweight model with faster inference. 
-                                The largest savings occur when using only <b>audio (A)</b>, as the student employs a much smaller feature extractor than those required for <b>RGB video (V)</b> and <b>optical flow (F)</b>.
+                                Our <b>KARMMA student</b> reduces memory usage by approximately <b>50%</b> at inference compared to the teacher while significantly lowering GFLOPs, resulting in a lightweight model suitable for edge and on-robot deployment. 
+                                The largest savings occur in unimodal <b>audio (A)</b> settings, where the student employs a compact audio encoder, substantially smaller than those used for <b>RGB video (V)</b> and <b>optical flow (F)</b>.
                             </p>
                         </div>
                         <div class="image-container-large">
@@ -244,11 +253,12 @@
         <section class="section" id="BibTeX">
             <div class="container is-max-desktop content">
                 <h2 class="title is-3 is-size-4-mobile" style="font-weight: 700;">BibTeX</h2>
-                <pre><code>@article{santos2025multimodal,
-    author  = {Maria Santos-Villafranca and Dustin Carrión-Ojeda and Alejandro Perez-Yus and Jesus Bermudez-Cameo and Jose J. Guerrero and Simone Schaub-Meyer},
-    title   = {Multimodal Knowledge Distillation for Egocentric Action Recognition Robust to Missing Modalities},
-    journal = {arXiv},
-    year    = {2025}
+                <pre><code>@inproceedings{carrion2026karmma,
+    author    = {Dustin Carrión-Ojeda* and Maria Santos-Villafranca* and Alejandro Perez-Yus and Jesus Bermudez-Cameo and Jose J. Guerrero and Simone Schaub-Meyer},
+    title     = {Multimodal Knowledge Distillation for Egocentric Action Recognition Robust to Missing Modalities},
+    booktitle = {Proceedings of the IEEE International Conference on Robotics & Automation (ICRA)},
+    year      = {2026},
+    note      = {to appear}
 }</code></pre>
             </div>
         </section>
@@ -264,9 +274,11 @@
                     </div>
                 <div class="content has-text-justified" style="font-size: 13px;">
                     <p>
-                        This work was supported by projects PID2021-125209OB-I00 and TED2021-129410B-I00, (MCIN/AEI/10.13039/501100011033 and FEDER/UE and NextGenerationEU/PRTR), DGA 2022-2026 grant and Grant SMT Erasmus+, project 2022-1-ES01-KA131-HED-000065592 funded by Campus Iberus. 
-                        The project has also been funded funded by the Hessian Ministry of Science and Research, Arts and Culture (HMWK) through the project "The Third Wave of Artificial Intelligence - 3AI". 
-                        The work was further supported by the Deutsche Forschungsgemeinschaft (German Research Foundation, DFG) under Germany's Excellence Strategy (EXC 3057/1 "Reasonable Artificial Intelligence", Project No. 533677015).
+                        This work was funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) under Germany's Excellence Strategy (EXC-3057/1 "Reasonable Artificial Intelligence", Project No. 533677015).
+                        We gratefully acknowledge support from the hessian.AI Service Center (funded by the Federal Ministry of Research, Technology and Space, BMFTR, grant No. 16IS22091) and the hessian.AI Innovation Lab (funded by the Hessian Ministry for Digital Strategy and Innovation, grant No. S-DIW04/0013/003).
+                        SSM has been funded by the DFG – 529680848.
+                        MSV, APY, JBC, and JJG further acknowledge support by projects PID2024-158322OB-I00 and PID2021-125209OB-I00, (MCIN/AEI/10.13039/501100011033/ FEDER, UE), project JIUZ2024-IyA-07, DGA 2022-2026 scholarship, and Grant SMT Erasmus+, project 2022-1-ES01-KA131-HED-000065592 funded by Campus Iberus. 
+
                     </p>
                 </div>
                 </div>
